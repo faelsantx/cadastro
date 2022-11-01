@@ -32,6 +32,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
     <p>Idade: ${task.idade}</p>
     <p>CPF: ${task.CPF}</p>
     <p>Profissão: ${task.profissao}</p>
+    <p>Email: ${task.email}</p>
     
     <div>
       <button class="btn btn-primary btn-delete" data-id="${doc.id}">
@@ -66,6 +67,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
           taskForm["idade"].value = task.idade;
           taskForm["CPF"].value = task.CPF;
           taskForm["profissao"].value = task.profissao;
+          taskForm["email"].value = task.email;
 
           editStatus = true;
           id = doc.id;
@@ -86,10 +88,11 @@ taskForm.addEventListener("submit", async (e) => {
   const idade = taskForm["idade"];
   const CPF = taskForm["CPF"];
   const profissao  = taskForm["profissao"];
+  const email = taskForm["email"];
 
   try {
     if (!editStatus) {
-      await saveTask(nome.value, sobrenome.value, idade.value, CPF.value, profissao.value);
+      await saveTask(nome.value, sobrenome.value, idade.value, CPF.value, profissao.value, email.value);
     } else {
       await updateTask(id, {
         nome: nome.value, 
@@ -97,6 +100,7 @@ taskForm.addEventListener("submit", async (e) => {
         idade: idade.value,
         CPF: CPF.value,
         profissao: profissao.value,
+        email: email.value,
       });
 
       editStatus = false;
